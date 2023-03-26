@@ -1,4 +1,4 @@
-# Obscurité_86 (Obscurite_86)
+# obscurité_86 (obscurite_86)
 
 ![csric_86](imgur.com image replace me!)
 
