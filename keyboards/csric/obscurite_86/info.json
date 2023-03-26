@@ -4,8 +4,8 @@
     "url": "https://github.com/CsRic",
     "maintainer": "qmk",
     "usb": {
-        "vid": "0xFEED",
-        "pid": "0x0000",
+        "vid": "0x4353",
+        "pid": "0x0001",
         "device_version": "1.0.0"
     },
     "processor": "atmega32u4",
