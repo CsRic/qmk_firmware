@@ -24,14 +24,13 @@
         "saturation_steps": 8,
         "brightness_steps": 8,
         "max_brightness": 255,
-        "sleep": true,
+        "sleep": false,
         "animations": {
             "all": true
         }
     },
     "indicators": {
-        "num_lock": "B3",
-        "caps_lock": "E6"
+
     },
     "layouts": {
         "LAYOUT": {
