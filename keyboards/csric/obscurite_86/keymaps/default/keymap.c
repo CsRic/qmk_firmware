@@ -39,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          _______,   _______,   _______,       _______,         _______,          KC_P0,          _______, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [MOD4] = LAYOUT(
-        RGB_TOG, KC_BRID, KC_BRIU, RGB_SAD, RGB_SAI, RGB_HUD, RGB_HUI, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX,
+        RGB_TOG, KC_BRID, KC_BRIU, RGB_SAD, RGB_SAI, RGB_HUD, RGB_HUI, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU, RGB_SPD, RGB_SPI, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX,     XXXXXXX,
          XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,   _______,
           _______,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       XXXXXXX,       XXXXXXX,
@@ -89,7 +89,8 @@ led_config_t g_led_config = {
         {3,25},          {22,25}, {37,25}, {52,25}, {67,25}, {82,25}, { 97, 25}, {112, 25}, {126, 25}, {141, 25}, {156, 25}, {171, 25},  {186, 25},  {205, 25}, {223, 25},
         {5,38},          {26,38}, {41,38}, {55,38}, {70,38}, {85,38}, {100, 38}, {115, 38}, {130, 38}, {145, 38}, {160, 38}, {175, 38},  {199, 38},             {223, 38},
                 {9,51},  {33,51}, {48,51}, {63,51}, {78,51}, { 93, 51}, {108, 51}, {123, 51}, {138, 51}, {153, 51}, {168, 51},            {188, 51}, {209, 51}, {223, 51},
-        {1,64}, {20,64},          {39,64}, {65,64},          { 91, 64},            {121, 64},            {149, 64}, {164, 64}, {179, 64}, {194, 64}, {209, 64}, {223, 64}
+        {1,64}, {20,64},          {39,64}, {65,64},          { 91, 64},            {121, 64},            {149, 64}, {164, 64}, {179, 64}, {194, 64}, {209, 64}, {223, 64},
+        {0, 0}, {1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}, {6, 6}, {7, 7}, {8, 8}, {9, 9}
     },
     {
         4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,
@@ -97,7 +98,7 @@ led_config_t g_led_config = {
         4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,
         4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,   4,
         4,  4,   4,   4,   4,   4,   4,   4,   4,   4,   4,    4,   4,   4,
-        4,   4,   4,   4,   4,   4,    4,   4,   4,   4,   4,   4
-
+        4,   4,   4,   4,   4,   4,    4,   4,   4,   4,   4,   4,
+        1,1,1,1,1,1,1,1,1,1
     }
 };
