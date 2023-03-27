@@ -26,7 +26,9 @@
         "max_brightness": 255,
         "sleep": true,
         "animations": {
-            "all": true
+            "rainbow_swirl": true,
+            "static_gradient": true,
+            "breathing": true
         }
     },
     "indicators": {
