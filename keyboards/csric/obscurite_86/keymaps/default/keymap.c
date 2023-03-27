@@ -1,6 +1,5 @@
 // Copyright 2023 Rui Chen (csric)
 // SPDX-License-Identifier: GPL-2.0-or-later
-#define DYNAMIC_KEYMAP_LAYER_COUNT 5
 
 #include QMK_KEYBOARD_H
 
