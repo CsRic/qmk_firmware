@@ -17,20 +17,6 @@
     "diode_direction": "COL2ROW",
     "features": {
     },
-    "rgblight": {
-        "pin": "C7",
-        "led_count": 96,
-        "hue_steps": 8,
-        "saturation_steps": 8,
-        "brightness_steps": 8,
-        "max_brightness": 255,
-        "sleep": true,
-        "animations": {
-            "rainbow_swirl": true,
-            "static_gradient": true,
-            "breathing": true
-        }
-    },
     "indicators": {
 
     },
