@@ -119,9 +119,8 @@ led_config_t g_led_config = {
 
 
 // light for pressed keys !!!!!
-// bool pos_to_hold_l[RGB_MATRIX_LED_COUNT] = {0};
+bool pos_to_hold_l[RGB_MATRIX_LED_COUNT] = {0};
 
-/*
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
     uint8_t pos =
@@ -133,13 +132,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
-*/
+
 
 // custom lights !!!!
 
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     uint8_t layer = get_highest_layer(layer_state);
-    // RGB rgb = hsv_to_rgb(rgb_matrix_get_hsv());
+    HSV hsv = rgb_matrix_get_hsv();
+    hsv.h += 130; // reversed color
+    RGB rgb = hsv_to_rgb(hsv);
     // layer indicater
         //numpad & grave layer
         if(layer == MOD3){
@@ -180,11 +181,11 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         }
 
     // holding light
-        // for (uint8_t i = 0; i < RGB_MATRIX_LED_COUNT;++i){
-        //     if(pos_to_hold_l[i]){
-        //         //rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
-        //     }
-        // }
+        for (uint8_t i = 0; i < RGB_MATRIX_LED_COUNT;++i){
+            if(pos_to_hold_l[i]){
+                rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
+            }
+        }
     // state indicater
         // capslock
         if (host_keyboard_led_state().caps_lock) {
