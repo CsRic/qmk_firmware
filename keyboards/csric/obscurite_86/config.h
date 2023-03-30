@@ -1,21 +1,24 @@
 #pragma once
 
+// NKRO
+#define FORCE_NKRO
+
+
+
+// RGB
 #define RGB_DI_PIN C7
 #define RGB_MATRIX_LED_COUNT 96
 
-
 // native effects
-
-
 #define ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
 #define ENABLE_RGB_MATRIX_CYCLE_UP_DOWN
 #define ENABLE_RGB_MATRIX_CYCLE_OUT_IN
 #define ENABLE_RGB_MATRIX_CYCLE_SPIRAL
 
 #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTICROSS
-#define ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS
-#define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
-#define ENABLE_RGB_MATRIX_SOLID_REACTIVE
+// #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS
+// #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
+// #define ENABLE_RGB_MATRIX_SOLID_REACTIVE
 
 // configs
 #define RGB_MATRIX_KEYPRESSES // reacts to keypresses
@@ -35,8 +38,6 @@
 // #define RGB_MATRIX_SPLIT { X, Y }     // (Optional) For split keyboards, the number of LEDs connected on each half. X = left, Y = Right.
                                       // If RGB_MATRIX_KEYPRESSES or RGB_MATRIX_KEYRELEASES is enabled, you also will want to enable SPLIT_TRANSPORT_MIRROR
 // #define RGB_TRIGGER_ON_KEYDOWN      // Triggers RGB keypress events on key down. This makes RGB control feel more responsive. This may cause RGB to not function properly on some boards
-
-
 
 
 // lighting
