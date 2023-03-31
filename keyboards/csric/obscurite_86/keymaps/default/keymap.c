@@ -139,12 +139,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     uint8_t layer = get_highest_layer(layer_state);
     HSV hsv = rgb_matrix_get_hsv();
-    hsv.h += 130; // reversed color
+    hsv.v = 240;
+    HSV hsv_ori = hsv
+    hsv.h += 128; // reversed color
     RGB rgb = hsv_to_rgb(hsv);
+    RGB rgb_ori = hsv_to_rgb(hsv_ori);
     // layer indicater
         //numpad & grave layer
         if(layer == MOD3){
             rgb_matrix_set_color_all(0, 0, 0);
+            rgb_matrix_set_color(21, 240, 240, 240);  // 0
             rgb_matrix_set_color(37, 240, 240, 240);  // 1
             rgb_matrix_set_color(38, 240, 240, 240); // 2
             rgb_matrix_set_color(39, 240, 240, 240); // 3
@@ -155,11 +159,20 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             rgb_matrix_set_color(68, 240, 240, 240); // 8
             rgb_matrix_set_color(69, 240, 240, 240); // 9
 
-            rgb_matrix_set_color(59, 240, 240, 240); // grave
-            rgb_matrix_set_color(60, 240, 240, 240); // still grave
+
+            //sub buttons
+            uint8_t pos_l[14] = {7,19,20,22,23,24,36,40,49,53,70,59, 60, 75};
+            for (uint8_t i = 0; i < 14; ++i){
+                rgb_matrix_set_color(i, rgb_ori.r, rgb_ori.g, rgb_ori.b); // 9
+            }
+
+            // numlock
+            if (host_keyboard_led_state().nums_lock) {
+                rgb_matrix_set_color(75, 240, 240, 240);
+            }
         }
-        //Navigate layer
-        else if(layer == MOD2){
+        // Navigate layer
+        else if (layer == MOD2) {
             rgb_matrix_set_color_all(0, 0, 0);
             rgb_matrix_set_color(37, 240, 240, 240); // left
             rgb_matrix_set_color(38, 240, 240, 240); // down
@@ -170,9 +183,15 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             rgb_matrix_set_color(14, 240, 240, 240); // page down
             rgb_matrix_set_color(15, 240, 240, 240); // end
             rgb_matrix_set_color(17, 240, 240, 240); // page up
+
+            // sub buttons
+            uint8_t pos_l[9] = {20,21,22,23,24,36,40,50,52};
+            for (uint8_t i = 0; i < 9; ++i){
+                rgb_matrix_set_color(i, rgb_ori.r, rgb_ori.g, rgb_ori.b); // 9
+            }
         }
         // system layer
-        else if(layer == MOD4){
+        else if (layer == MOD4) {
             uint8_t pos_l[19] = {94, 93, 91, 90, 89, 88, 86, 85, 84, 83,
                              81, 80, 79, 78, 76, 17, 14, 12, 15};
             for (uint8_t i = 0; i < 19;++i){
@@ -188,7 +207,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         }
     // state indicater
         // capslock
-        if (host_keyboard_led_state().caps_lock) {
+        if ((layer != MOD3) && host_keyboard_led_state().caps_lock) {
             rgb_matrix_set_color(75, 240, 240, 240);
         }
         // scrlock

@@ -42,7 +42,8 @@
 // #define RGB_TRIGGER_ON_KEYDOWN      // Triggers RGB keypress events on key down. This makes RGB control feel more responsive. This may cause RGB to not function properly on some boards
 
 
-// lighting
-#define RGBLIGHT_SAT_STEP 51
-#define RGBLIGHT_VAL_STEP 40
-#define RGBLIGHT_HUE_STEP 4
+// steps
+#define RGB_MATRIX_HUE_STEP 8
+#define RGB_MATRIX_SAT_STEP 51
+#define RGB_MATRIX_VAL_STEP 51
+#define RGB_MATRIX_SPD_STEP 16
