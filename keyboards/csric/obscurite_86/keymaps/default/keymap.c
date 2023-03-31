@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRAVE, _______, _______, _______, _______, _______, _______, KC_P7,  KC_P8,  KC_P9,  KC_PMNS, _______, _______,      _______,     _______,
          KC_GRAVE,    _______, _______, _______, _______, _______,  KC_P4,   KC_P4,  KC_P5,  KC_P6,  KC_PPLS, _______, _______,    _______,   _______,
           _______,     _______, _______, _______, _______, _______,  KC_P1,   KC_P1,  KC_P2,  KC_P3,  KC_PAST, _______,       _______,       _______,
-            _______,       _______, _______, _______, _______,  KC_P0,   KC_P0,  KC_P0,  KC_P0,  KC_PDOT, KC_PSLS,     _______,      KC_UP,  _______,
+            _______,       _______, _______, _______, _______,  _______,   KC_P0,  KC_P0,  KC_P0,  KC_PDOT, KC_PSLS,     _______,      KC_UP,  _______,
          _______,   _______,   _______,       _______,         _______,          KC_P0,          _______, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [MOD4] = LAYOUT(
@@ -140,8 +140,8 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     uint8_t layer = get_highest_layer(layer_state);
     HSV hsv = rgb_matrix_get_hsv();
     hsv.v = 240;
-    HSV hsv_ori = hsv
-    hsv.h += 128; // reversed color
+    HSV hsv_ori = hsv;
+    hsv.h += 128;  // reversed color
     RGB rgb = hsv_to_rgb(hsv);
     RGB rgb_ori = hsv_to_rgb(hsv_ori);
     // layer indicater
@@ -149,6 +149,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         if(layer == MOD3){
             rgb_matrix_set_color_all(0, 0, 0);
             rgb_matrix_set_color(21, 240, 240, 240);  // 0
+            rgb_matrix_set_color(22, 240, 240, 240);  // 0
             rgb_matrix_set_color(37, 240, 240, 240);  // 1
             rgb_matrix_set_color(38, 240, 240, 240); // 2
             rgb_matrix_set_color(39, 240, 240, 240); // 3
@@ -161,13 +162,13 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 
 
             //sub buttons
-            uint8_t pos_l[14] = {7,19,20,22,23,24,36,40,49,53,70,59, 60, 75};
-            for (uint8_t i = 0; i < 14; ++i){
-                rgb_matrix_set_color(i, rgb_ori.r, rgb_ori.g, rgb_ori.b); // 9
+            uint8_t pos_l[12] = {7,19,20,23,36,40,49,53,70,59, 60, 75};
+            for (uint8_t i = 0; i < 12; ++i){
+                rgb_matrix_set_color(pos_l[i], rgb_ori.r, rgb_ori.g, rgb_ori.b); // 9
             }
 
             // numlock
-            if (host_keyboard_led_state().nums_lock) {
+            if (host_keyboard_led_state().num_lock) {
                 rgb_matrix_set_color(75, 240, 240, 240);
             }
         }
@@ -187,7 +188,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             // sub buttons
             uint8_t pos_l[9] = {20,21,22,23,24,36,40,50,52};
             for (uint8_t i = 0; i < 9; ++i){
-                rgb_matrix_set_color(i, rgb_ori.r, rgb_ori.g, rgb_ori.b); // 9
+                rgb_matrix_set_color(pos_l[i], rgb_ori.r, rgb_ori.g, rgb_ori.b); // 9
             }
         }
         // system layer
