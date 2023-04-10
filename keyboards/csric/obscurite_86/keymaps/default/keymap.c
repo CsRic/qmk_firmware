@@ -5,11 +5,16 @@
 
 enum layers { BASE0, BASE1, MOD2, MOD3, MOD4 };
 
+enum custom_keycodes {
+  FN_HINT = SAFE_RANGE
+};
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE0] = LAYOUT(
-        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PAUSE, KC_SCRL, KC_CAPS,
-        KC_DEL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,       KC_BSPC,      TG(1),
-        KC_TAB,       KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,      KC_GRAVE,
+        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_SCRL,   TG(1),  KC_CAPS,
+        KC_DEL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,       KC_BSPC,      KC_PAUSE,
+        KC_TAB,       KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,      KC_INS,
         MO(3),        KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,   KC_QUOT, KC_ENT,              KC_PGUP,
         KC_LSFT,           KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,         KC_UP,    KC_PGDN,
          KC_LCTL,   KC_LGUI,   KC_LALT,      KC_SPC,            MO(2),          KC_RSFT,         KC_RCTL,  MO(4),  MO(2),   KC_LEFT, KC_DOWN,   KC_RGHT
@@ -32,15 +37,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [MOD3] = LAYOUT(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_NUM,
-        KC_GRAVE, _______, _______, _______, _______, _______, _______, KC_P7,  KC_P8,  KC_P9,  KC_PMNS, _______, _______,      _______,     _______,
-         KC_GRAVE,    _______, _______, _______, _______, _______,  KC_P4,   KC_P4,  KC_P5,  KC_P6,  KC_PPLS, _______, _______,    _______,   _______,
+        _______, _______, _______, _______, _______, _______, _______, KC_P7,  KC_P8,  KC_P9,  KC_PMNS, _______, _______,      _______,     _______,
+         KC_GRAVE,    _______, _______, _______, _______, _______,  KC_P4,   KC_P4,  KC_P5,  KC_P6,  KC_PPLS, _______, _______,    KC_GRAVE,   _______,
           _______,     _______, _______, _______, _______, _______,  KC_P1,   KC_P1,  KC_P2,  KC_P3,  KC_PAST, _______,       _______,       _______,
             _______,       _______, _______, _______, _______,  _______,   KC_P0,  KC_P0,  KC_P0,  KC_PDOT, KC_PSLS,     _______,      KC_UP,  _______,
          _______,   _______,   _______,       _______,         _______,          KC_P0,          _______, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [MOD4] = LAYOUT(
-        RGB_TOG, KC_BRID, KC_BRIU, RGB_SAD, RGB_SAI, RGB_HUD, RGB_HUI, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU, RGB_SPD, RGB_SPI, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX,     XXXXXXX,
+        FN_HINT, KC_BRID, KC_BRIU, RGB_SAD, RGB_SAI, RGB_HUD, RGB_HUI, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX,
+        RGB_TOG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_SPD, RGB_SPI,      XXXXXXX,     XXXXXXX,
          XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,   XXXXXXX,
           _______,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       XXXXXXX,       XXXXXXX,
             XXXXXXX,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,     XXXXXXX,     RGB_VAI, XXXXXXX,
@@ -120,6 +125,8 @@ led_config_t g_led_config = {
 
 // light for pressed keys !!!!!
 bool pos_to_hold_l[RGB_MATRIX_LED_COUNT] = {0};
+// FN_HINT state
+bool hint = 0;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
@@ -130,6 +137,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     } else {
         pos_to_hold_l[pos] = 0;
     }
+    if(keycode==FN_HINT && record->event.pressed){
+        hint = !hint;
+        return false;
+    }
     return true;
 }
 
@@ -139,14 +150,39 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     uint8_t layer = get_highest_layer(layer_state);
     HSV hsv = rgb_matrix_get_hsv();
+    HSV hsv_ori_v = hsv;
+    HSV hsv_v = hsv;
+    hsv_v.h += 128;
+    RGB rgb_v = hsv_to_rgb(hsv_v);
+    RGB rgb_ori_v = hsv_to_rgb(hsv_ori_v);
     hsv.v = 240;
     HSV hsv_ori = hsv;
     hsv.h += 128;  // reversed color
     RGB rgb = hsv_to_rgb(hsv);
     RGB rgb_ori = hsv_to_rgb(hsv_ori);
+    // FN Hint
+        if(hint){
+            //94,     93,     91,     90,     89,     88,     86,     85,     84,     83,     81,     80,     79,     78,     76,     75
+            uint8_t pos_1_l[14] = {93,     91,     90,     89,     83,     81,     80,     79,     74,   45,    43,    16,   4, 7};
+            for (uint8_t i = 0; i < 14;++i){
+                rgb_matrix_set_color(pos_1_l[i], rgb_v.r, rgb_v.g, rgb_v.b);
+            }
+            uint8_t pos_2_l[8] = {94,      88,     86,     85,     84,     78,     76,     75};
+            for (uint8_t i = 0; i < 8;++i){
+                rgb_matrix_set_color(pos_2_l[i], rgb_ori_v.r, rgb_ori_v.g, rgb_ori_v.b);
+            }
+        }
     // layer indicater
+        // system layer
+        if (layer == MOD4) {
+            uint8_t pos_l[20] = {94, 93, 91, 90, 89, 88, 86, 85, 84, 83,
+                             81, 80, 79, 17, 14, 12, 15, 60, 71, 72};
+            for (uint8_t i = 0; i < 20;++i){
+                rgb_matrix_set_color(pos_l[i], 240, 240, 240);
+            }
+        }
         //numpad & grave layer
-        if(layer == MOD3){
+        else if(layer == MOD3){
             rgb_matrix_set_color_all(0, 0, 0);
             rgb_matrix_set_color(21, 240, 240, 240);  // 0
             rgb_matrix_set_color(22, 240, 240, 240);  // 0
@@ -162,7 +198,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 
 
             //sub buttons
-            uint8_t pos_l[12] = {7,19,20,23,36,40,49,53,70,59, 60, 75};
+            uint8_t pos_l[12] = {7,19,20,23,36,40,49,53,70,59, 46, 75};
             for (uint8_t i = 0; i < 12; ++i){
                 rgb_matrix_set_color(pos_l[i], rgb_ori.r, rgb_ori.g, rgb_ori.b); // 9
             }
@@ -191,21 +227,6 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
                 rgb_matrix_set_color(pos_l[i], rgb_ori.r, rgb_ori.g, rgb_ori.b); // 9
             }
         }
-        // system layer
-        else if (layer == MOD4) {
-            uint8_t pos_l[19] = {94, 93, 91, 90, 89, 88, 86, 85, 84, 83,
-                             81, 80, 79, 78, 76, 17, 14, 12, 15};
-            for (uint8_t i = 0; i < 19;++i){
-                rgb_matrix_set_color(pos_l[i], 240, 240, 240);  // left
-            }
-        }
-
-    // holding light
-        for (uint8_t i = 0; i < RGB_MATRIX_LED_COUNT;++i){
-            if(pos_to_hold_l[i]){
-                rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
-            }
-        }
     // state indicater
         // capslock
         if ((layer != MOD3) && host_keyboard_led_state().caps_lock) {
@@ -213,11 +234,17 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         }
         // scrlock
         if (host_keyboard_led_state().scroll_lock) {
-            rgb_matrix_set_color(76, 240, 240, 240);
+            rgb_matrix_set_color(78, 240, 240, 240);
         }
         // layer 0 shift state
         if(layer == BASE0){
-            rgb_matrix_set_color(74, 240, 240, 240);
+            rgb_matrix_set_color(76, 240, 240, 240);
+        }
+    // holding light
+        for (uint8_t i = 0; i < RGB_MATRIX_LED_COUNT;++i){
+            if(pos_to_hold_l[i]){
+                rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
+            }
         }
     return false;
 }
