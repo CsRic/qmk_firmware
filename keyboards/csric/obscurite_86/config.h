@@ -14,18 +14,18 @@
 #define ENABLE_RGB_MATRIX_CYCLE_UP_DOWN
 #define ENABLE_RGB_MATRIX_CYCLE_OUT_IN
 #define ENABLE_RGB_MATRIX_CYCLE_SPIRAL
-
-#define ENABLE_RGB_MATRIX_TYPING_HEATMAP
+#define ENABLE_RGB_MATRIX_BAND_PINWHEEL_VAL
+// #define ENABLE_RGB_MATRIX_TYPING_HEATMAP
 
 #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTICROSS
 #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS
-#define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
+// #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
 // #define ENABLE_RGB_MATRIX_SOLID_REACTIVE
 
 // configs
 #define RGB_MATRIX_KEYPRESSES // reacts to keypresses
 // #define RGB_MATRIX_KEYRELEASES // reacts to keyreleases (instead of keypresses)
-#define RGB_MATRIX_FRAMEBUFFER_EFFECTS // enable framebuffer effects
+// #define RGB_MATRIX_FRAMEBUFFER_EFFECTS // enable framebuffer effects
 // #define RGB_MATRIX_TIMEOUT 0 // number of milliseconds to wait until rgb automatically turns off
 #define RGB_DISABLE_WHEN_USB_SUSPENDED // turn off effects when suspended
 #define RGB_MATRIX_LED_PROCESS_LIMIT (RGB_MATRIX_LED_COUNT + 4) / 5 // limits the number of LEDs to process in an animation per task run (increases keyboard responsiveness)
@@ -43,7 +43,7 @@
 
 
 // steps
-#define RGB_MATRIX_HUE_STEP 8
+#define RGB_MATRIX_HUE_STEP 4
 #define RGB_MATRIX_SAT_STEP 51
 #define RGB_MATRIX_VAL_STEP 51
 #define RGB_MATRIX_SPD_STEP 16
