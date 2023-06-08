@@ -31,11 +31,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [MOD3] = LAYOUT(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_NUM,
-        _______, _______, _______, _______, _______, _______, _______, KC_P7,  KC_P8,  KC_P9,  KC_PMNS, _______, _______,      _______,     _______,
-         KC_GRAVE,    _______, _______, _______, _______, _______,  KC_PPLS,   KC_P4,  KC_P5,  KC_P6,  KC_PPLS, _______, _______,    KC_GRAVE,   _______,
-          _______,     _______, _______, _______, _______, _______,  KC_PMNS,   KC_P1,  KC_P2,  KC_P3,  KC_PAST, _______,       _______,       _______,
-            _______,       _______, _______, _______, _______,  _______,   KC_PPLS,  KC_P0,  KC_P0,  KC_PDOT, KC_PSLS,     _______,      KC_UP,  _______,
-         _______,   _______,   _______,       _______,         _______,          KC_P0,          _______, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT
+        _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______,  _______, _______, _______,      _______,     _______,
+         KC_GRAVE,    _______, _______, _______, _______, _______,  KC_PPLS,   KC_P7,  KC_P8,  KC_P9,  KC_PPLS, _______, _______,    KC_GRAVE,   _______,
+          _______,     _______, _______, _______, _______, _______,  KC_PMNS,   KC_P4,  KC_P5,  KC_P6,  KC_PAST, _______,       _______,       _______,
+            _______,       _______, _______, _______, _______,  _______,   KC_PPLS,  KC_P1,  KC_P2,  KC_P3, KC_PSLS,     _______,      KC_UP,  _______,
+         _______,   _______,   _______,       _______,         _______,          KC_P0,          KC_PDOT, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [MOD4] = LAYOUT(
         FN_HINT, KC_BRID, KC_BRIU, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -268,22 +268,22 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         //numpad & grave layer
         else if(layer == MOD3){
             rgb_matrix_set_color_all(0, 0, 0);
-            rgb_matrix_set_color(21, 240, 240, 240);  // 0
-            rgb_matrix_set_color(22, 240, 240, 240);  // 0
-            rgb_matrix_set_color(37, 240, 240, 240);  // 1
-            rgb_matrix_set_color(38, 240, 240, 240); // 2
-            rgb_matrix_set_color(39, 240, 240, 240); // 3
-            rgb_matrix_set_color(52, 240, 240, 240); // 4
-            rgb_matrix_set_color(51, 240, 240, 240); // 5
-            rgb_matrix_set_color(50, 240, 240, 240); // 6
-            rgb_matrix_set_color(67, 240, 240, 240); // 7
-            rgb_matrix_set_color(68, 240, 240, 240); // 8
-            rgb_matrix_set_color(69, 240, 240, 240); // 9
+            rgb_matrix_set_color(7, 240, 240, 240);  // 0
+            rgb_matrix_set_color(22, 240, 240, 240);  // 1
+            rgb_matrix_set_color(21, 240, 240, 240);  // 2
+            rgb_matrix_set_color(20, 240, 240, 240);  // 3
+            rgb_matrix_set_color(37, 240, 240, 240);  // 4
+            rgb_matrix_set_color(38, 240, 240, 240); // 5
+            rgb_matrix_set_color(39, 240, 240, 240); // 6
+            rgb_matrix_set_color(52, 240, 240, 240); // 7
+            rgb_matrix_set_color(51, 240, 240, 240); // 8
+            rgb_matrix_set_color(50, 240, 240, 240); // 9
+
 
 
             //sub buttons
-            uint8_t pos_l[12] = {7,19,20,23,36,40,49,53,70,59, 46, 75};
-            for (uint8_t i = 0; i < 12; ++i){
+            uint8_t pos_l[11] = {9,19,20,23,36,40,49,53,59, 46, 75};
+            for (uint8_t i = 0; i < 11; ++i){
                 rgb_matrix_set_color(pos_l[i], rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b); // 9
             }
 
