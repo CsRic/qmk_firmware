@@ -15,35 +15,35 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE0] = LAYOUT(
         KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_SCRL,   TG_SS,  KC_CAPS,
-        KC_DEL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,       KC_BSPC,      KC_PAUSE,
-        KC_TAB,       KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,      KC_INS,
+        KC_DEL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,       KC_BSPC,      KC_HOME,
+        KC_TAB,       KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,      KC_END,
         MO(MOD3),        KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,   KC_QUOT, KC_ENT,              KC_PGUP,
         KC_LSFT,           KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,         KC_UP,    KC_PGDN,
-        KC_LCTL,   KC_LGUI,   KC_LALT,      KC_SPC,          MO(MOD2),        SPC_SFT,       KC_RCTL,  MO(MOD4),  MO(MOD2),   KC_LEFT, KC_DOWN,   KC_RGHT
+        KC_LCTL,   KC_LGUI,   KC_LALT,      KC_SPC,          MO(MOD2),        SPC_SFT,       KC_RALT,  KC_RCTL,  MO(MOD4),   KC_LEFT, KC_DOWN,   KC_RGHT
     ),
     [MOD2] = LAYOUT(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,      _______,     _______,
          _______,    _______, _______, _______, _______, _______, _______, KC_PGUP,  KC_UP,  KC_PGDN, _______, _______, _______,    _______,   _______,
           _______,     _______, _______, _______, _______, _______, KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,  _______,       _______,       _______,
-            _______,       _______, _______, _______, _______, KC_WH_L, KC_WH_U, KC_WH_D, KC_WH_R, KC_WH_R, _______,     _______,     KC_PGUP, _______,
-         _______,   _______,   _______,       _______,         _______,         _______,          _______, _______, _______, KC_HOME, KC_PGDN, KC_END
+            _______,       _______, _______, _______, _______, _______, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______,     _______,     _______, _______,
+         _______,   _______,   _______,       _______,         _______,         _______,          _______, _______, _______, _______, _______, _______
     ),
     [MOD3] = LAYOUT(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_NUM,
         _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______,  _______, _______, _______,      _______,     _______,
          KC_GRAVE,    _______, _______, _______, _______, _______,  KC_PPLS,   KC_P7,  KC_P8,  KC_P9,  KC_PPLS, _______, _______,    KC_GRAVE,   _______,
           _______,     _______, _______, _______, _______, _______,  KC_PMNS,   KC_P4,  KC_P5,  KC_P6,  KC_PAST, _______,       _______,       _______,
-            _______,       _______, _______, _______, _______,  _______,   KC_PPLS,  KC_P1,  KC_P2,  KC_P3, KC_PSLS,     _______,      KC_UP,  _______,
-         _______,   _______,   _______,       _______,         _______,          KC_P0,          KC_PDOT, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT
+            _______,       _______, _______, _______, _______,  _______,   KC_PPLS,  KC_P1,  KC_P2,  KC_P3, KC_PSLS,     _______,      _______,  _______,
+         _______,   _______,   _______,       _______,         _______,          KC_P0,          KC_PDOT, _______, _______, _______, _______, _______
     ),
     [MOD4] = LAYOUT(
         FN_HINT, KC_BRID, KC_BRIU, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX,
-        RGB_TOG, XXXXXXX, XXXXXXX, RGB_SAD, RGB_SAI, RGB_HUD, RGB_HUI, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_SPD, RGB_SPI,      XXXXXXX,     XXXXXXX,
-         XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,   XXXXXXX,
+        RGB_TOG, RGB_SAD, RGB_SAI, RGB_HUD, RGB_HUI, XXXXXXX, RGB_RMOD, RGB_MOD, XXXXXXX, RGB_VAD, RGB_VAI, RGB_SPD, RGB_SPI,      XXXXXXX,     KC_PAUSE,
+         XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,   KC_INSERT,
           _______,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       XXXXXXX,       XXXXXXX,
-            _______,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,     _______,     RGB_VAI, XXXXXXX,
-         XXXXXXX,   XXXXXXX,   XXXXXXX,       XXXXXXX,         _______,         _______,          XXXXXXX, _______, _______, RGB_RMOD, RGB_VAD, RGB_MOD
+            _______,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,     _______,     XXXXXXX, XXXXXXX,
+         XXXXXXX,   XXXXXXX,   XXXXXXX,       XXXXXXX,         _______,         _______,          XXXXXXX, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX
     )
 };
 
@@ -246,22 +246,16 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 
     // FN Hint
         if(hint){
-            //94,     93,     91,     90,     89,     88,     86,     85,     84,     83,     81,     80,     79,     78,     76,     75
-            uint8_t pos_1_l[14] = {93,     91,     90,     89,     83,     81,     80,     79,     74,   45,    43,    16,   4, 7};
-            for (uint8_t i = 0; i < 14;++i){
+            uint8_t pos_1_l[23] = {93,     91,     90,     89,     83,     81,     80,     79,     74,   45,    43,    16,   4,   6,  7,  61,62,63,64,69,70,71,72};
+            for (uint8_t i = 0; i < 23;++i){
                 rgb_matrix_set_color(pos_1_l[i], rgb_sec.r, rgb_sec.g, rgb_sec.b);
-            }
-            uint8_t pos_2_l[8] = {94,      88,     86,     85,     84,     78,     76,     75};
-            for (uint8_t i = 0; i < 8;++i){
-                rgb_matrix_set_color(pos_2_l[i], rgb_ori.r, rgb_ori.g, rgb_ori.b);
             }
         }
     // layer indicater
         // system layer
         if (layer == MOD4) {
-            uint8_t pos_l[20] = {94, 93, 91,63,64,65,66, 85, 84, 83,
-                             81, 80, 79, 17, 14, 12, 15, 60, 71, 72};
-            for (uint8_t i = 0; i < 20;++i){
+            uint8_t pos_l[18] = {93,91,84,81,80,79,61,62,63,64,66,67,69,70,71,72,74,45};
+            for (uint8_t i = 0; i < 18;++i){
                 rgb_matrix_set_color(pos_l[i], 240, 240, 240);
             }
         }
@@ -278,14 +272,17 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             rgb_matrix_set_color(52, 240, 240, 240); // 7
             rgb_matrix_set_color(51, 240, 240, 240); // 8
             rgb_matrix_set_color(50, 240, 240, 240); // 9
-
-
-
             //sub buttons
-            uint8_t pos_l[11] = {9,19,20,23,36,40,49,53,59, 46, 75};
-            for (uint8_t i = 0; i < 11; ++i){
-                rgb_matrix_set_color(pos_l[i], rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b); // 9
-            }
+            rgb_matrix_set_color(9, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
+            rgb_matrix_set_color(19, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
+            rgb_matrix_set_color(23, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
+            rgb_matrix_set_color(36, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
+            rgb_matrix_set_color(40, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
+            rgb_matrix_set_color(49, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
+            rgb_matrix_set_color(53, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
+            rgb_matrix_set_color(59, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
+            rgb_matrix_set_color(46, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
+            rgb_matrix_set_color(75, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
 
             // numlock
             if (host_keyboard_led_state().num_lock) {
@@ -306,10 +303,15 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             rgb_matrix_set_color(17, 240, 240, 240); // page up
 
             // sub buttons
-            uint8_t pos_l[9] = {20,21,22,23,24,36,40,50,52};
-            for (uint8_t i = 0; i < 9; ++i){
-                rgb_matrix_set_color(pos_l[i], rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b); // 9
-            }
+            uint8_t pos_l[9] = {20,21,22,23,36,40,50,52};
+            rgb_matrix_set_color(20, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
+            rgb_matrix_set_color(21, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
+            rgb_matrix_set_color(22, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
+            rgb_matrix_set_color(23, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
+            rgb_matrix_set_color(36, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
+            rgb_matrix_set_color(40, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
+            rgb_matrix_set_color(50, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
+            rgb_matrix_set_color(52, rgb_ori_max_sv.r, rgb_ori_max_sv.g, rgb_ori_max_sv.b);
         }
     // state indicater
         // capslock
