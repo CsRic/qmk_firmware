@@ -1,7 +1,9 @@
 // Copyright 2023 Rui Chen (csric)
 // SPDX-License-Identifier: GPL-2.0-or-later
-#define DYNAMIC_KEYMAP_LAYER_COUNT 5
+
+#define DYNAMIC_KEYMAP_LAYER_COUNT 4
 #include QMK_KEYBOARD_H
+#include <lib/lib8tion/lib8tion.h>
 
 enum layers { BASE0, MOD2, MOD3, MOD4 };
 
@@ -117,8 +119,13 @@ led_config_t g_led_config = {
 
 
 
-// light for pressed keys !!!!!
+// light for pressed keys
+#define CSRIC_MAX_CAPTURE 10
 bool pos_to_hold_l[RGB_MATRIX_LED_COUNT] = {0};
+uint16_t pos_to_tick_l[RGB_MATRIX_LED_COUNT] = {0};
+uint8_t captured[CSRIC_MAX_CAPTURE] = {0};
+uint8_t captured_count = 0;
+uint32_t rgb_timer_buffer;
 // FN_HINT state
 bool hint = 0;
 // SPACE-RSHIFT state
@@ -128,6 +135,7 @@ uint8_t secondary_h = 128;
 uint8_t secondary_s = 255;
 
 void keyboard_post_init_user(void){
+    rgb_timer_buffer = 0;
     HSV hsv = rgb_matrix_get_hsv();
     secondary_h = (hsv.h + 128) % 256;
     secondary_s = 255;
@@ -143,6 +151,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         g_led_config.matrix_co[record->event.key.row][record->event.key.col];
     if (record->event.pressed) {
         pos_to_hold_l[pos] = 1;
+        pos_to_tick_l[pos] = 0;
     } else {
         pos_to_hold_l[pos] = 0;
     }
@@ -226,7 +235,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     return true;
 }
 
-// custom lights !!!!
+
+// custom lights
+extern void HOLDING_HORIZONTAL(HSV hsv_secondary_max_v);
+
 
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     uint8_t layer = get_highest_layer(layer_state);
@@ -251,6 +263,23 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
                 rgb_matrix_set_color(pos_1_l[i], rgb_sec.r, rgb_sec.g, rgb_sec.b);
             }
         }
+
+
+    // holding light horizontal
+    captured_count = 0;
+    uint32_t deltaTime = sync_timer_elapsed32(rgb_timer_buffer);
+    rgb_timer_buffer = sync_timer_read32();
+    for (uint8_t i = 0; i < RGB_MATRIX_LED_COUNT;++i){
+        if(pos_to_hold_l[i]){
+            pos_to_tick_l[i] += deltaTime;
+            if(captured_count + 1 < CSRIC_MAX_CAPTURE){
+                captured[captured_count] = i;
+                captured_count++;
+            }
+        }
+    }
+    HOLDING_HORIZONTAL(hsv_secondary_max_v);
+
     // layer indicater
         // system layer
         if (layer == MOD4) {
@@ -326,11 +355,68 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         if (spc_sft_state == 1){
             rgb_matrix_set_color(76, 240, 240, 240);
         }
-    // holding light
-        for (uint8_t i = 0; i < RGB_MATRIX_LED_COUNT;++i){
-            if(pos_to_hold_l[i]){
-                rgb_matrix_set_color(i, rgb_sec_max_v.r, rgb_sec_max_v.g, rgb_sec_max_v.b);
+    // holding light single in MOD layers
+        if (layer != BASE0){
+            for (int8_t i = 0; i < captured_count; ++i){
+                rgb_matrix_set_color(captured[i], rgb_sec_max_v.r, rgb_sec_max_v.g,
+                                     rgb_sec_max_v.b);
             }
         }
     return false;
+}
+
+#define CSRIC_HOLDING_LIMIT 127
+#define CSRIC_APPLY_LIMIT 16
+
+// pressed key special effect
+void HOLDING_HORIZONTAL(HSV hsv_secondary_max_v){
+    HSV hsv_buffer_l[RGB_MATRIX_LED_COUNT];
+    for (uint8_t i = 0; i < RGB_MATRIX_LED_COUNT; ++i) {
+        HSV hsv_buffer;
+        hsv_buffer.h = hsv_secondary_max_v.h;
+        hsv_buffer.s = hsv_secondary_max_v.s;
+        hsv_buffer.v = 0;
+
+        uint16_t hsv_buffer_s_change_value_max = 0;
+        for (uint8_t j = 0; j < captured_count; ++j) {
+            // locate
+            uint8_t hold_pos = captured[j];
+            uint8_t dx =
+                (g_led_config.point[i].x > g_led_config.point[hold_pos].x)
+                    ? g_led_config.point[i].x -
+                          g_led_config.point[hold_pos].x
+                    : g_led_config.point[hold_pos].x -
+                          g_led_config.point[i].x;
+            uint8_t dy =
+                (g_led_config.point[i].y > g_led_config.point[hold_pos].y)
+                    ? g_led_config.point[i].y -
+                          g_led_config.point[hold_pos].y
+                    : g_led_config.point[hold_pos].y -
+                          g_led_config.point[i].y;
+
+            uint16_t dist = dx + dy * 6;
+            uint16_t tick = scale16by8(pos_to_tick_l[hold_pos],
+                                       qadd8(rgb_matrix_config.speed, 96));
+            // calculate
+            if (tick > CSRIC_HOLDING_LIMIT) {
+                tick = CSRIC_HOLDING_LIMIT;
+            }
+            uint16_t effect = tick + dist;
+            if(effect > 255){
+                effect = 255;
+            }
+            if(effect < 255){
+                if (dx > hsv_buffer_s_change_value_max){
+                    hsv_buffer_s_change_value_max = dx * 2 / 3;
+                }
+                hsv_buffer.v = qadd8(hsv_buffer.v, 255 - effect);
+            }
+        }
+        hsv_buffer.h -= hsv_buffer_s_change_value_max;
+        // apply
+        if (hsv_buffer.v > CSRIC_APPLY_LIMIT){
+            RGB temp = hsv_to_rgb(hsv_buffer);
+            rgb_matrix_set_color(i,temp.r,temp.g,temp.b);
+        }
+    }
 }
