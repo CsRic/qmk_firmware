@@ -365,8 +365,8 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     return false;
 }
 
-#define CSRIC_HOLDING_LIMIT 127
-#define CSRIC_APPLY_LIMIT 16
+#define CSRIC_HOLDING_LIMIT 120
+#define CSRIC_APPLY_LIMIT 32
 
 // pressed key special effect
 void HOLDING_HORIZONTAL(HSV hsv_secondary_max_v){
@@ -402,14 +402,22 @@ void HOLDING_HORIZONTAL(HSV hsv_secondary_max_v){
                 tick = CSRIC_HOLDING_LIMIT;
             }
             uint16_t effect = tick + dist;
-            if(effect > 255){
+            if(effect > 255 - CSRIC_APPLY_LIMIT){
                 effect = 255;
             }
             if(effect < 255){
                 if (dx > hsv_buffer_s_change_value_max){
                     hsv_buffer_s_change_value_max = dx * 2 / 3;
                 }
-                hsv_buffer.v = qadd8(hsv_buffer.v, 255 - effect);
+                int8_t light_increament;
+                if (effect < CSRIC_HOLDING_LIMIT) {
+                    light_increament = 240;
+                }
+                else{
+                    light_increament =
+                        qsub8(240, (effect - CSRIC_HOLDING_LIMIT) * 2);
+                }
+                hsv_buffer.v = qadd8(hsv_buffer.v, light_increament);
             }
         }
         hsv_buffer.h -= hsv_buffer_s_change_value_max;
